@@ -14,6 +14,7 @@ Sihan Wang<sup>1,2</sup>, Xiyao Liu<sup>1</sup>, Lianqing Liu<sup>1</sup>, Zhi H
 [![Paper License](https://img.shields.io/badge/Paper%20License-arXiv-2f855a)](LICENSE-PAPER.md)
 [![Project Page](https://img.shields.io/badge/Project-Page-1764c2)](https://oedosoldier.github.io/ViGOS/)
 [![Code](https://img.shields.io/badge/Code-GitHub-24292f)](https://github.com/OedoSoldier/ViGOS)
+[![Training Logs](https://img.shields.io/badge/W%26B-Training%20Logs-ffbe00)](https://wandb.ai/oedosoldier-ucas/ViGOS/reports/Training-Logs-of-ViGOS--VmlldzoxNzI0NzAzMg)
 [![3B](https://img.shields.io/badge/HF-ViGOS--3B-ffcc4d)](https://huggingface.co/OedoSoldier/ViGOS-3B)
 [![7B](https://img.shields.io/badge/HF-ViGOS--7B-ffcc4d)](https://huggingface.co/OedoSoldier/ViGOS-7B)
 
@@ -134,6 +135,8 @@ bash scripts/train_vigos_qwen25_3b.sh
 ## Training
 
 The shell launchers use Accelerate + DeepSpeed with `configs/accelerate_zero2_lora_gpu_8.yaml`.
+
+Training curves and run logs are available in the [W&B Training Logs of ViGOS](https://wandb.ai/oedosoldier-ucas/ViGOS/reports/Training-Logs-of-ViGOS--VmlldzoxNzI0NzAzMg) report.
 
 ### Qwen2.5-VL-3B
 
