@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="title" content="ViGOS: Seeing Before Reasoning">
+  <meta name="description" content="ViGOS decouples perception and reasoning for shortcut-resilient multimodal on-policy self-distillation.">
+  <meta name="keywords" content="ViGOS, multimodal reasoning, on-policy self-distillation, MLLM, visual grounding, Qwen2.5-VL">
+  <meta name="author" content="Sihan Wang, Xiyao Liu, Lianqing Liu, Zhi Han">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ViGOS Project Page">
+  <meta property="og:title" content="Seeing Before Reasoning">
+  <meta property="og:description" content="Decoupling perception and reasoning for shortcut-resilient multimodal OPSD.">
+  <meta property="og:url" content="https://oedosoldier.github.io/ViGOS/">
+  <meta property="og:image" content="static/images/pipeline.png">
+  <meta property="og:image:alt" content="ViGOS pipeline">
+  <meta property="article:published_time" content="2026-06-16T00:00:00.000Z">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="Multimodal reasoning">
+  <meta property="article:tag" content="Self-distillation">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ViGOS: Seeing Before Reasoning">
+  <meta name="twitter:description" content="Shortcut-resilient multimodal on-policy self-distillation.">
+  <meta name="twitter:image" content="static/images/pipeline.png">
+  <meta name="twitter:image:alt" content="ViGOS pipeline">
+
+  <meta name="citation_title" content="Seeing Before Reasoning: Decoupling Perception and Reasoning for Shortcut-Resilient Multimodal On-Policy Self-Distillation">
+  <meta name="citation_author" content="Wang, Sihan">
+  <meta name="citation_author" content="Liu, Xiyao">
+  <meta name="citation_author" content="Liu, Lianqing">
+  <meta name="citation_author" content="Han, Zhi">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_pdf_url" content="static/pdfs/ViGOS.pdf">
+
+  <meta name="theme-color" content="#1764c2">
+  <meta name="msapplication-TileColor" content="#1764c2">
+
+  <title>ViGOS | Seeing Before Reasoning</title>
+
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/vigos.css">
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Seeing Before Reasoning: Decoupling Perception and Reasoning for Shortcut-Resilient Multimodal On-Policy Self-Distillation",
+    "description": "ViGOS decouples image-based perception supervision from answer-conditioned reasoning supervision for multimodal on-policy self-distillation.",
+    "author": [
+      {"@type": "Person", "name": "Sihan Wang"},
+      {"@type": "Person", "name": "Xiyao Liu"},
+      {"@type": "Person", "name": "Lianqing Liu"},
+      {"@type": "Person", "name": "Zhi Han"}
+    ],
+    "datePublished": "2026-06-16",
+    "url": "https://github.com/OedoSoldier/ViGOS",
+    "image": "static/images/pipeline.png",
+    "keywords": ["multimodal reasoning", "on-policy self-distillation", "visual grounding", "MLLM"],
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+<body>
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+    <section class="hero publication-header">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <p class="publication-venue">arXiv submission, 2026</p>
+              <h1 class="title is-1 publication-title">
+                Seeing Before Reasoning: Decoupling Perception and Reasoning for
+                Shortcut-Resilient Multimodal On-Policy Self-Distillation
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Sihan Wang<sup>1,2</sup></span>
+                <span class="author-block">Xiyao Liu<sup>1</sup></span>
+                <span class="author-block">Lianqing Liu<sup>1</sup></span>
+                <span class="author-block">Zhi Han<sup>1</sup></span>
+              </div>
+              <div class="is-size-6 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>State Key Laboratory of Robotics and Intelligent Systems,
+                  Shenyang Institute of Automation, Chinese Academy of Sciences
+                </span>
+                <span class="author-block">
+                  <sup>2</sup>University of Chinese Academy of Sciences
+                </span>
+              </div>
+
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="static/pdfs/ViGOS.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/OedoSoldier/ViGOS" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/OedoSoldier/ViGOS-3B" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-download"></i></span>
+                    <span>ViGOS-3B</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/OedoSoldier/ViGOS-7B" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-download"></i></span>
+                    <span>ViGOS-7B</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#BibTeX" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-quote-right"></i></span>
+                    <span>BibTeX</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <figure class="publication-banner shortcut-figure">
+            <img src="static/images/vanilla_opsd_shortcut.png" alt="Shortcut risk in vanilla OPSD" loading="eager">
+          </figure>
+          <h2 class="subtitle has-text-centered">
+            Vanilla multimodal OPSD can let a privileged answer shape dense token
+            supervision before the student has made visual evidence explicit.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="abstract">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                On-policy self-distillation trains a model on its own rollouts
+                and uses a frozen copy to provide dense token-level targets
+                conditioned on a reference target. This works well for LLM
+                reasoning, but a direct extension to multimodal large language
+                models can create a shortcut: the privileged target may guide
+                tokens mainly from text rather than the image.
+              </p>
+              <p>
+                ViGOS is a visually grounded OPSD framework for MLLM
+                post-training. The student first writes a visual description and
+                then reasons toward the final answer. For valid rollouts, an
+                image-only perception teacher supervises the description, while
+                a privileged reasoning teacher supervises the reasoning and
+                final answer on the same student prefix. A reference teacher is
+                used only for invalid rollouts to recover the output format.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Method</h2>
+        <figure class="method-figure">
+          <img src="static/images/pipeline.png" alt="ViGOS pipeline" loading="lazy">
+        </figure>
+        <div class="columns method-cards">
+          <div class="column">
+            <div class="vigos-card">
+              <p class="card-kicker">Stage 1</p>
+              <h3>Structured on-policy rollout</h3>
+              <p>The student sees only the image and question, then writes a description, reasoning trace, and boxed answer.</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="vigos-card">
+              <p class="card-kicker">Stage 2</p>
+              <h3>Segment parsing</h3>
+              <p>The rollout is parsed into description, reasoning, answer, and invalid-output masks.</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="vigos-card">
+              <p class="card-kicker">Stage 3</p>
+              <h3>Segment-wise teachers</h3>
+              <p>Image-only supervision grounds description tokens; privileged reasoning supervision is applied after the visual prefix.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="results">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Results</h2>
+        <p class="section-intro">
+          ViGOS keeps the main benchmark gains of OPSD while improving
+          image-grounded behavior in prior-sensitive settings. Main benchmark
+          scores are Pass@5 / Avg@5.
+        </p>
+
+        <div class="columns result-summary">
+          <div class="column">
+            <div class="metric-card">
+              <span>3B Mean Pass@5</span>
+              <strong>71.97</strong>
+              <small>+11.11 over baseline</small>
+            </div>
+          </div>
+          <div class="column">
+            <div class="metric-card">
+              <span>3B Mean Avg@5</span>
+              <strong>41.35</strong>
+              <small>+13.44 over baseline</small>
+            </div>
+          </div>
+          <div class="column">
+            <div class="metric-card">
+              <span>7B Mean Pass@5</span>
+              <strong>75.60</strong>
+              <small>+7.47 over baseline</small>
+            </div>
+          </div>
+          <div class="column">
+            <div class="metric-card">
+              <span>7B Mean Avg@5</span>
+              <strong>50.99</strong>
+              <small>+5.61 over baseline</small>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title is-4">Eight Main Benchmarks</h3>
+        <div class="table-container results-table">
+          <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>MM-Vet</th>
+                <th>MMMU</th>
+                <th>MMMU-Pro</th>
+                <th>MathVerse</th>
+                <th>MathVista</th>
+                <th>MMSI</th>
+                <th>RealWorldQA</th>
+                <th>CV-Bench</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Baseline 3B</td><td>62.39 / 34.68</td><td>71.51 / 33.54</td><td>55.00 / 22.55</td><td>60.61 / 30.18</td><td>65.40 / 35.08</td><td>53.20 / 16.78</td><td>38.17 / 15.76</td><td>80.59 / 34.68</td></tr>
+              <tr><td>OPSD 3B</td><td>68.81 / 45.69</td><td>76.42 / 42.70</td><td>57.04 / 26.24</td><td>59.54 / 30.45</td><td>72.80 / 43.84</td><td>63.60 / 23.68</td><td>86.93 / 53.02</td><td>91.47 / 63.43</td></tr>
+              <tr class="ours"><td>ViGOS 3B</td><td>65.60 / 43.76</td><td>76.42 / 42.32</td><td>56.44 / 26.16</td><td>58.55 / 30.10</td><td>74.00 / 43.50</td><td>66.40 / 24.90</td><td>86.80 / 55.37</td><td>91.51 / 64.67</td></tr>
+              <tr><td>Baseline 7B</td><td>69.72 / 52.94</td><td>77.77 / 50.30</td><td>63.85 / 37.41</td><td>68.40 / 45.63</td><td>79.20 / 60.90</td><td>63.20 / 27.10</td><td>32.55 / 12.94</td><td>90.37 / 75.85</td></tr>
+              <tr><td>OPSD 7B</td><td>70.18 / 52.75</td><td>77.99 / 50.99</td><td>63.37 / 36.91</td><td>68.65 / 45.57</td><td>80.50 / 61.54</td><td>60.30 / 25.68</td><td>85.62 / 61.20</td><td>90.26 / 74.32</td></tr>
+              <tr class="ours"><td>ViGOS 7B</td><td>72.02 / 54.40</td><td>80.11 / 51.42</td><td>64.81 / 36.48</td><td>68.91 / 44.77</td><td>80.90 / 58.78</td><td>61.10 / 25.58</td><td>85.88 / 62.88</td><td>91.09 / 73.58</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="title is-4">ViLP Prior-Sensitive Evaluation</h3>
+        <div class="table-container results-table compact">
+          <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>ViLP-F Score</th>
+                <th>ViLP-F Prior</th>
+                <th>ViLP-P Score</th>
+                <th>ViLP-P Prior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Baseline 3B</td><td>59.50</td><td>93.33</td><td>55.67</td><td>80.67</td></tr>
+              <tr><td>OPSD 3B</td><td>67.17</td><td>97.33</td><td>66.83</td><td>92.00</td></tr>
+              <tr class="ours"><td>ViGOS 3B</td><td>70.17</td><td>97.67</td><td>69.50</td><td>90.00</td></tr>
+              <tr><td>Baseline 7B</td><td>42.00</td><td>73.33</td><td>37.00</td><td>58.67</td></tr>
+              <tr><td>OPSD 7B</td><td>58.00</td><td>97.67</td><td>57.00</td><td>91.67</td></tr>
+              <tr class="ours"><td>ViGOS 7B</td><td>62.67</td><td>97.00</td><td>61.67</td><td>91.67</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="examples">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+        <p class="section-intro">
+          In these ViLP cases, the image conflicts with a common prior or a fact
+          stated in the prompt. OPSD often notices the visual cue but returns to
+          the prior; ViGOS grounds the final answer in the image.
+        </p>
+        <div class="example-tabs" role="tablist" aria-label="ViLP qualitative examples">
+          <button class="example-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="case-landmark" data-example-target="case-landmark">Landmark</button>
+          <button class="example-tab" type="button" role="tab" aria-selected="false" aria-controls="case-text" data-example-target="case-text">Text Conflict</button>
+          <button class="example-tab" type="button" role="tab" aria-selected="false" aria-controls="case-size" data-example-target="case-size">Size Prior</button>
+          <button class="example-tab" type="button" role="tab" aria-selected="false" aria-controls="case-biology" data-example-target="case-biology">Biology</button>
+          <button class="example-tab" type="button" role="tab" aria-selected="false" aria-controls="case-tool" data-example-target="case-tool">Tool Use</button>
+        </div>
+
+        <div class="example-panels">
+          <article class="case-card is-active" id="case-landmark" role="tabpanel">
+            <div class="case-header">
+              <div>
+                <p class="case-label">Landmark location prior</p>
+                <h3>Statue of Liberty in a Paris scene</h3>
+              </div>
+              <span class="truth-chip">Ground truth: Paris</span>
+            </div>
+            <div class="case-context">
+              <figure class="case-image">
+                <img src="static/images/landmark_location_prior.png" alt="Statue of Liberty with the Eiffel Tower in the background" loading="lazy">
+              </figure>
+              <div class="case-question">
+                <span>Question</span>
+                <p>Please answer with one word: The Statue of Liberty is in New York City. Based on the image, which city is the Statue of Liberty in? Please respond with one word or abbreviation, such as NYC.</p>
+              </div>
+            </div>
+            <div class="response-grid">
+              <section class="model-response opsd-response">
+                <div class="response-heading">
+                  <h4>OPSD</h4>
+                  <span>Incorrect</span>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>The image shows the Statue of Liberty, a well-known landmark, but in an unexpected setting with the Eiffel Tower in the background, which is located in Paris, France. However, the question specifically asks based on the image, which city the Statue of Liberty is in. Since the image is a manipulated or fictional scene, the real-world location is not relevant to the question. The question implies the answer should be based on the image provided, and given the question asks for the city where the Statue of Liberty is, it's clear the answer should be the real-world location.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>NYC</strong>
+                </div>
+              </section>
+              <section class="model-response vigos-response">
+                <div class="response-heading">
+                  <h4>ViGOS</h4>
+                  <span>Correct</span>
+                </div>
+                <div class="response-block description-block">
+                  <span>Description</span>
+                  <p>The image shows the Statue of Liberty, a large green statue holding a torch aloft and a tablet in the other hand. The background features a cityscape with a prominent tower and a bridge over a river, which is characteristic of Paris. The Eiffel Tower is clearly visible, confirming the location is Paris.</p>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>The image shows the Statue of Liberty, but the background clearly indicates Paris with the Eiffel Tower. The question asks for the city where the Statue of Liberty is located. Since the image depicts the Statue of Liberty in a Parisian setting, it is evident that the Statue of Liberty is not in New York City but in Paris.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>Paris</strong>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <article class="case-card" id="case-text" role="tabpanel" hidden>
+            <div class="case-header">
+              <div>
+                <p class="case-label">Text conflict</p>
+                <h3>Image text overrides a standard conversion fact</h3>
+              </div>
+              <span class="truth-chip">Ground truth: 200</span>
+            </div>
+            <div class="case-context">
+              <figure class="case-image">
+                <img src="static/images/text_conflict.png" alt="Colorful image showing the text 1 km equals 200 m" loading="lazy">
+              </figure>
+              <div class="case-question">
+                <span>Question</span>
+                <p>Please answer with one word: 1 kilometer is equal to 1000 meters. How many meters are in a kilometer, as indicated in the image?</p>
+              </div>
+            </div>
+            <div class="response-grid">
+              <section class="model-response opsd-response">
+                <div class="response-heading">
+                  <h4>OPSD</h4>
+                  <span>Incorrect</span>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>The image shows a mathematical statement "1 km = 200 m," which is incorrect. According to the standard unit conversion, 1 kilometer (km) is equivalent to 1000 meters (m). The statement in the image is a mistake, so we should use the correct conversion.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>1000</strong>
+                </div>
+              </section>
+              <section class="model-response vigos-response">
+                <div class="response-heading">
+                  <h4>ViGOS</h4>
+                  <span>Correct</span>
+                </div>
+                <div class="response-block description-block">
+                  <span>Description</span>
+                  <p>The image features a vibrant, abstract design with radiating lines in multiple colors (red, yellow, orange, blue, and pink) converging towards the center. Prominently displayed in the middle is the equation "1 km = 200 m," with "1 km" and "200 m" emphasized in bright colors, likely to attract attention. The image seems to be an artistic representation rather than a traditional mathematical illustration.</p>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>The question asks for the number of meters in a kilometer, based on the image. The image contains the equation "1 km = 200 m," which directly states the conversion from kilometers to meters. Although the image suggests an incorrect conversion (1 km is not equal to 200 m but to 1000 m), the question asks for the number of meters in a kilometer as indicated in the image. Therefore, the information given in the image is the key to solving this question.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>200</strong>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <article class="case-card" id="case-size" role="tabpanel" hidden>
+            <div class="case-header">
+              <div>
+                <p class="case-label">Size prior</p>
+                <h3>The visible elephant is taller in this scene</h3>
+              </div>
+              <span class="truth-chip">Ground truth: Elephant</span>
+            </div>
+            <div class="case-context">
+              <figure class="case-image">
+                <img src="static/images/size_prior.png" alt="Elephant and giraffe drinking water at a river" loading="lazy">
+              </figure>
+              <div class="case-question">
+                <span>Question</span>
+                <p>Please answer with one word: Giraffe is very tall. What's the tallest animal drinking water at the river in the image?</p>
+              </div>
+            </div>
+            <div class="response-grid">
+              <section class="model-response opsd-response">
+                <div class="response-heading">
+                  <h4>OPSD</h4>
+                  <span>Incorrect</span>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>The question asks for the tallest animal drinking water at the river in the image. The giraffe in the image is significantly taller than the elephant. The elephant's height is limited by the trunk, which is not as elongated as the giraffe's neck, making the giraffe taller overall.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>Giraffe</strong>
+                </div>
+              </section>
+              <section class="model-response vigos-response">
+                <div class="response-heading">
+                  <h4>ViGOS</h4>
+                  <span>Correct</span>
+                </div>
+                <div class="response-block description-block">
+                  <span>Description</span>
+                  <p>The image shows an elephant and a giraffe at a river during sunset. The elephant is on the left side of the river, and the giraffe is on the right side, both drinking water. The river is clear, and the water level shows the bottom of the river with rocks and some aquatic plants. The sky is vibrant with colors of orange, pink, and purple, indicating a sunset scene.</p>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>To determine the tallest animal drinking water at the river, we need to compare the height of the elephant and the giraffe. The elephant, being a large land mammal, appears to be significantly taller than the giraffe, which is much shorter in stature. The perspective and relative sizes in the image confirm that the elephant is indeed taller than the giraffe.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>Elephant</strong>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <article class="case-card" id="case-biology" role="tabpanel" hidden>
+            <div class="case-header">
+              <div>
+                <p class="case-label">Biology prior</p>
+                <h3>The highlighted organs are lungs</h3>
+              </div>
+              <span class="truth-chip">Ground truth: Lungs</span>
+            </div>
+            <div class="case-context">
+              <figure class="case-image">
+                <img src="static/images/biology_prior.png" alt="Fish anatomy image with lung-like organs highlighted" loading="lazy">
+              </figure>
+              <div class="case-question">
+                <span>Question</span>
+                <p>Please answer with one word: Gills allow fish to breathe underwater. Based on the image, what helps the fish to breathe underwater?</p>
+              </div>
+            </div>
+            <div class="response-grid">
+              <section class="model-response opsd-response">
+                <div class="response-heading">
+                  <h4>OPSD</h4>
+                  <span>Incorrect</span>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>The image shows a fish with its internal anatomy exposed, revealing a respiratory system that includes lungs and what appears to be gill-like structures. Given the problem's focus on what allows the fish to breathe underwater, and considering the visible structures within the fish, the respiratory system in the image is designed to mimic gills. While the image is stylized, it represents a form of adaptation to aquatic life, where the gill-like structures are the key to the fish's ability to breathe underwater.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>Gills</strong>
+                </div>
+              </section>
+              <section class="model-response vigos-response">
+                <div class="response-heading">
+                  <h4>ViGOS</h4>
+                  <span>Correct</span>
+                </div>
+                <div class="response-block description-block">
+                  <span>Description</span>
+                  <p>The image shows a detailed cross-sectional view of a fish's body, revealing its internal organs and respiratory system. The lungs are prominently displayed, with visible branching structures resembling human lungs, and the fish is shown exhaling through its mouth, indicating the exchange of gases. The surrounding environment includes water, bubbles, and marine life, emphasizing the underwater setting.</p>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>The image depicts a fish with visible lungs and an open mouth, suggesting a method of gas exchange similar to what is seen in terrestrial lungs. While the question mentions gills, the lungs are clearly emphasized in the image. The fish appears to be breathing air through its lungs, which aligns with the presence of lungs in the cross-sectional view. The gills, while present in real fish, are not highlighted in this particular image.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>Lungs</strong>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <article class="case-card" id="case-tool" role="tabpanel" hidden>
+            <div class="case-header">
+              <div>
+                <p class="case-label">Tool-use prior</p>
+                <h3>The bird uses a hand saw, not its beak</h3>
+              </div>
+              <span class="truth-chip">Ground truth: Saw</span>
+            </div>
+            <div class="case-context">
+              <figure class="case-image">
+                <img src="static/images/tool_use_prior.png" alt="Woodpecker using a hand saw on a tree trunk" loading="lazy">
+              </figure>
+              <div class="case-question">
+                <span>Question</span>
+                <p>Please answer with one word: Woodpeckers usually use their beaks to search for insects in trees. According to the image, what do woodpeckers use to search for insects in trees?</p>
+              </div>
+            </div>
+            <div class="response-grid">
+              <section class="model-response opsd-response">
+                <div class="response-heading">
+                  <h4>OPSD</h4>
+                  <span>Incorrect</span>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>The image shows a woodpecker using a hand saw to search for insects in a tree, which is an unusual and artificial depiction. Woodpeckers typically use their beaks for such tasks.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>Beaks</strong>
+                </div>
+              </section>
+              <section class="model-response vigos-response">
+                <div class="response-heading">
+                  <h4>ViGOS</h4>
+                  <span>Correct</span>
+                </div>
+                <div class="response-block description-block">
+                  <span>Description</span>
+                  <p>The image shows a woodpecker using a hand saw to cut into a tree stump. The tree stump has a large hole revealing numerous insects inside. There are also a few insects on the tree branch above the stump and a few on the ground around the stump. The woodpecker appears to be searching for insects using the saw.</p>
+                </div>
+                <div class="response-block">
+                  <span>Reasoning</span>
+                  <p>The image depicts a woodpecker using a hand saw to cut into a tree stump. This action contradicts the typical behavior of woodpeckers, which usually use their beaks to search for insects in trees. The presence of a saw implies that the woodpecker is not using its beak for the task at hand. The insects inside the tree stump and on the ground suggest that the woodpecker is indeed searching for them, but the tool (hand saw) indicates a departure from the usual method.</p>
+                </div>
+                <div class="answer-box">
+                  <span>Answer</span>
+                  <strong>Saw</strong>
+                </div>
+              </section>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@misc{wang2026seeing,
+  title={Seeing Before Reasoning: Decoupling Perception and Reasoning for Shortcut-Resilient Multimodal On-Policy Self-Distillation},
+  author={Wang, Sihan and Liu, Xiyao and Liu, Lianqing and Han, Zhi},
+  year={2026},
+  eprint={TBD},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://github.com/OedoSoldier/ViGOS}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+              which was adopted from the
+              <a href="https://nerfies.github.io" target="_blank">Nerfies</a>
+              project page. You are free to borrow the source code of this
+              website; please link back to the template in the footer.
+            </p>
+            <p>
+              ViGOS paper text, figures, and project-page research content are
+              made available under the
+              <a rel="license" href="https://arxiv.org/licenses/nonexclusive-distrib/1.0/" target="_blank">arXiv.org non-exclusive license to distribute</a>,
+              unless otherwise noted. This is not a Creative Commons reuse license.
+            </p>
+            <p>
+              ViGOS implementation code is released under the
+              <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License 2.0</a>,
+              unless otherwise noted.
+            </p>
+            <p>
+              The website template is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

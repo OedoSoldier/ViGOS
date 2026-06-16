@@ -1,0 +1,16 @@
+ViGOS
+Copyright 2026 The ViGOS Authors.
+
+The Apache License, Version 2.0 applies to the ViGOS implementation code,
+including source files and configuration or launcher files under vigos/,
+scripts/, and configs/, unless otherwise noted.
+
+The ViGOS paper, paper PDF, paper text, paper figures, and project-page
+research content are made available under the arXiv.org non-exclusive
+license to distribute; see LICENSE-PAPER.md.
+
+The project page template retains its original Creative Commons
+Attribution-ShareAlike 4.0 International License; see docs/README.md.
+
+Model weights, third-party datasets, benchmark assets, and external
+dependencies are subject to their own licenses.
