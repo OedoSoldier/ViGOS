@@ -10,8 +10,6 @@ Sihan Wang<sup>1,2</sup>, Xiyao Liu<sup>1</sup>, Lianqing Liu<sup>1</sup>, Zhi H
 <sup>2</sup>University of Chinese Academy of Sciences
 
 [![Paper](https://img.shields.io/badge/Paper-PDF-b31b1b)](paper/ViGOS.pdf)
-[![Code License](https://img.shields.io/badge/Code%20License-Apache--2.0-1764c2)](LICENSE)
-[![Paper License](https://img.shields.io/badge/Paper%20License-arXiv-2f855a)](LICENSE-PAPER.md)
 [![Project Page](https://img.shields.io/badge/Project-Page-1764c2)](https://oedosoldier.github.io/ViGOS/)
 [![Code](https://img.shields.io/badge/Code-GitHub-24292f)](https://github.com/OedoSoldier/ViGOS)
 [![Training Logs](https://img.shields.io/badge/W%26B-Training%20Logs-ffbe00)](https://wandb.ai/oedosoldier-ucas/ViGOS/reports/Training-Logs-of-ViGOS--VmlldzoxNzI0NzAzMg)
