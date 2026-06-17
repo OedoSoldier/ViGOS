@@ -481,14 +481,38 @@ code {
     font-size: 2rem !important;
   }
 
-  .results-scroll {
+  #results {
+    overflow: visible;
+    touch-action: pan-y;
+  }
+
+  #results > .container {
     max-width: none;
-    margin-right: -1.5rem;
-    margin-left: -1.5rem;
-    overflow-x: auto;
+    width: 100%;
+  }
+
+  .results-scroll {
+    display: block;
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: scroll;
+    overflow-y: hidden;
     overscroll-behavior-x: contain;
-    padding: 0 1.5rem 0.75rem;
+    padding: 0 1rem 0.75rem;
+    touch-action: pan-y;
+    transform: translateX(-50%);
     -webkit-overflow-scrolling: touch;
+    background:
+      linear-gradient(90deg, transparent calc(100% - 28px), rgba(246, 248, 251, 0.92));
+    cursor: grab;
+  }
+
+  #results.is-results-dragging .results-scroll {
+    cursor: grabbing;
   }
 
   .results-scroll::-webkit-scrollbar {
@@ -506,7 +530,10 @@ code {
   }
 
   .results-scroll-inner {
+    display: block;
+    width: 980px;
     min-width: 980px;
+    max-width: none;
   }
 
   .result-summary.columns {
@@ -545,7 +572,14 @@ code {
   }
 
   .results-table {
-    overflow: visible;
+    width: 100%;
+    overflow: visible !important;
+  }
+
+  .results-table table,
+  .results-table.compact table {
+    width: 100%;
+    min-width: 0;
   }
 
   .case-header,
@@ -576,6 +610,7 @@ code {
 
 @media screen and (max-width: 380px) {
   .results-scroll-inner {
+    width: 920px;
     min-width: 920px;
   }
 
