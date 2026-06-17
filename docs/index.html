@@ -237,85 +237,89 @@
           scores are Pass@5 / Avg@5.
         </p>
 
-        <div class="columns result-summary">
-          <div class="column">
-            <div class="metric-card">
-              <span>3B Mean Pass@5</span>
-              <strong>71.97</strong>
-              <small>+11.11 over baseline</small>
+        <div class="results-scroll" role="region" aria-label="Results summary and benchmark tables">
+          <div class="results-scroll-inner">
+            <div class="columns result-summary">
+              <div class="column">
+                <div class="metric-card">
+                  <span>3B Mean Pass@5</span>
+                  <strong>71.97</strong>
+                  <small>+11.11 over baseline</small>
+                </div>
+              </div>
+              <div class="column">
+                <div class="metric-card">
+                  <span>3B Mean Avg@5</span>
+                  <strong>41.35</strong>
+                  <small>+13.44 over baseline</small>
+                </div>
+              </div>
+              <div class="column">
+                <div class="metric-card">
+                  <span>7B Mean Pass@5</span>
+                  <strong>75.60</strong>
+                  <small>+7.47 over baseline</small>
+                </div>
+              </div>
+              <div class="column">
+                <div class="metric-card">
+                  <span>7B Mean Avg@5</span>
+                  <strong>50.99</strong>
+                  <small>+5.61 over baseline</small>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="column">
-            <div class="metric-card">
-              <span>3B Mean Avg@5</span>
-              <strong>41.35</strong>
-              <small>+13.44 over baseline</small>
-            </div>
-          </div>
-          <div class="column">
-            <div class="metric-card">
-              <span>7B Mean Pass@5</span>
-              <strong>75.60</strong>
-              <small>+7.47 over baseline</small>
-            </div>
-          </div>
-          <div class="column">
-            <div class="metric-card">
-              <span>7B Mean Avg@5</span>
-              <strong>50.99</strong>
-              <small>+5.61 over baseline</small>
-            </div>
-          </div>
-        </div>
 
-        <h3 class="title is-4">Eight Main Benchmarks</h3>
-        <div class="table-container results-table">
-          <table class="table is-fullwidth is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>MM-Vet</th>
-                <th>MMMU</th>
-                <th>MMMU-Pro</th>
-                <th>MathVerse</th>
-                <th>MathVista</th>
-                <th>MMSI</th>
-                <th>RealWorldQA</th>
-                <th>CV-Bench</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Baseline 3B</td><td>62.39 / 34.68</td><td>71.51 / 33.54</td><td>55.00 / 22.55</td><td>60.61 / 30.18</td><td>65.40 / 35.08</td><td>53.20 / 16.78</td><td>38.17 / 15.76</td><td>80.59 / 34.68</td></tr>
-              <tr><td>OPSD 3B</td><td>68.81 / 45.69</td><td>76.42 / 42.70</td><td>57.04 / 26.24</td><td>59.54 / 30.45</td><td>72.80 / 43.84</td><td>63.60 / 23.68</td><td>86.93 / 53.02</td><td>91.47 / 63.43</td></tr>
-              <tr class="ours"><td>ViGOS 3B</td><td>65.60 / 43.76</td><td>76.42 / 42.32</td><td>56.44 / 26.16</td><td>58.55 / 30.10</td><td>74.00 / 43.50</td><td>66.40 / 24.90</td><td>86.80 / 55.37</td><td>91.51 / 64.67</td></tr>
-              <tr><td>Baseline 7B</td><td>69.72 / 52.94</td><td>77.77 / 50.30</td><td>63.85 / 37.41</td><td>68.40 / 45.63</td><td>79.20 / 60.90</td><td>63.20 / 27.10</td><td>32.55 / 12.94</td><td>90.37 / 75.85</td></tr>
-              <tr><td>OPSD 7B</td><td>70.18 / 52.75</td><td>77.99 / 50.99</td><td>63.37 / 36.91</td><td>68.65 / 45.57</td><td>80.50 / 61.54</td><td>60.30 / 25.68</td><td>85.62 / 61.20</td><td>90.26 / 74.32</td></tr>
-              <tr class="ours"><td>ViGOS 7B</td><td>72.02 / 54.40</td><td>80.11 / 51.42</td><td>64.81 / 36.48</td><td>68.91 / 44.77</td><td>80.90 / 58.78</td><td>61.10 / 25.58</td><td>85.88 / 62.88</td><td>91.09 / 73.58</td></tr>
-            </tbody>
-          </table>
-        </div>
+            <h3 class="title is-4">Eight Main Benchmarks</h3>
+            <div class="table-container results-table">
+              <table class="table is-fullwidth is-striped is-hoverable">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>MM-Vet</th>
+                    <th>MMMU</th>
+                    <th>MMMU-Pro</th>
+                    <th>MathVerse</th>
+                    <th>MathVista</th>
+                    <th>MMSI</th>
+                    <th>RealWorldQA</th>
+                    <th>CV-Bench</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Baseline 3B</td><td>62.39 / 34.68</td><td>71.51 / 33.54</td><td>55.00 / 22.55</td><td>60.61 / 30.18</td><td>65.40 / 35.08</td><td>53.20 / 16.78</td><td>38.17 / 15.76</td><td>80.59 / 34.68</td></tr>
+                  <tr><td>OPSD 3B</td><td>68.81 / 45.69</td><td>76.42 / 42.70</td><td>57.04 / 26.24</td><td>59.54 / 30.45</td><td>72.80 / 43.84</td><td>63.60 / 23.68</td><td>86.93 / 53.02</td><td>91.47 / 63.43</td></tr>
+                  <tr class="ours"><td>ViGOS 3B</td><td>65.60 / 43.76</td><td>76.42 / 42.32</td><td>56.44 / 26.16</td><td>58.55 / 30.10</td><td>74.00 / 43.50</td><td>66.40 / 24.90</td><td>86.80 / 55.37</td><td>91.51 / 64.67</td></tr>
+                  <tr><td>Baseline 7B</td><td>69.72 / 52.94</td><td>77.77 / 50.30</td><td>63.85 / 37.41</td><td>68.40 / 45.63</td><td>79.20 / 60.90</td><td>63.20 / 27.10</td><td>32.55 / 12.94</td><td>90.37 / 75.85</td></tr>
+                  <tr><td>OPSD 7B</td><td>70.18 / 52.75</td><td>77.99 / 50.99</td><td>63.37 / 36.91</td><td>68.65 / 45.57</td><td>80.50 / 61.54</td><td>60.30 / 25.68</td><td>85.62 / 61.20</td><td>90.26 / 74.32</td></tr>
+                  <tr class="ours"><td>ViGOS 7B</td><td>72.02 / 54.40</td><td>80.11 / 51.42</td><td>64.81 / 36.48</td><td>68.91 / 44.77</td><td>80.90 / 58.78</td><td>61.10 / 25.58</td><td>85.88 / 62.88</td><td>91.09 / 73.58</td></tr>
+                </tbody>
+              </table>
+            </div>
 
-        <h3 class="title is-4">ViLP Prior-Sensitive Evaluation</h3>
-        <div class="table-container results-table compact">
-          <table class="table is-fullwidth is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>ViLP-F Score</th>
-                <th>ViLP-F Prior</th>
-                <th>ViLP-P Score</th>
-                <th>ViLP-P Prior</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Baseline 3B</td><td>59.50</td><td>93.33</td><td>55.67</td><td>80.67</td></tr>
-              <tr><td>OPSD 3B</td><td>67.17</td><td>97.33</td><td>66.83</td><td>92.00</td></tr>
-              <tr class="ours"><td>ViGOS 3B</td><td>70.17</td><td>97.67</td><td>69.50</td><td>90.00</td></tr>
-              <tr><td>Baseline 7B</td><td>42.00</td><td>73.33</td><td>37.00</td><td>58.67</td></tr>
-              <tr><td>OPSD 7B</td><td>58.00</td><td>97.67</td><td>57.00</td><td>91.67</td></tr>
-              <tr class="ours"><td>ViGOS 7B</td><td>62.67</td><td>97.00</td><td>61.67</td><td>91.67</td></tr>
-            </tbody>
-          </table>
+            <h3 class="title is-4">ViLP Prior-Sensitive Evaluation</h3>
+            <div class="table-container results-table compact">
+              <table class="table is-fullwidth is-striped is-hoverable">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>ViLP-F Score</th>
+                    <th>ViLP-F Prior</th>
+                    <th>ViLP-P Score</th>
+                    <th>ViLP-P Prior</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Baseline 3B</td><td>59.50</td><td>93.33</td><td>55.67</td><td>80.67</td></tr>
+                  <tr><td>OPSD 3B</td><td>67.17</td><td>97.33</td><td>66.83</td><td>92.00</td></tr>
+                  <tr class="ours"><td>ViGOS 3B</td><td>70.17</td><td>97.67</td><td>69.50</td><td>90.00</td></tr>
+                  <tr><td>Baseline 7B</td><td>42.00</td><td>73.33</td><td>37.00</td><td>58.67</td></tr>
+                  <tr><td>OPSD 7B</td><td>58.00</td><td>97.67</td><td>57.00</td><td>91.67</td></tr>
+                  <tr class="ours"><td>ViGOS 7B</td><td>62.67</td><td>97.00</td><td>61.67</td><td>91.67</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </section>
