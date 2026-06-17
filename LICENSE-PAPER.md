@@ -1,7 +1,7 @@
 # Paper License
 
-The ViGOS paper, paper PDF, paper text, paper figures, and project-page research content in this repository are made available under the arXiv.org non-exclusive license to distribute, unless otherwise noted.
+The ViGOS paper, paper PDF, paper text, paper figures, and project-page research content in this repository are released under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0), unless otherwise noted.
 
-License URI: https://arxiv.org/licenses/nonexclusive-distrib/1.0/
+License deed: https://creativecommons.org/licenses/by-nc-nd/4.0/
 
-This license records that the submitter grants arXiv.org a perpetual, non-exclusive license to distribute the article. It does not grant a Creative Commons reuse license.
+Legal code: https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode

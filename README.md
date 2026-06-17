@@ -312,7 +312,7 @@ The project page is adapted from the Academic Project Page Template, which credi
 
 The ViGOS implementation code, including source files and configuration or launcher files under `vigos/`, `scripts/`, and `configs/`, is released under the [Apache License 2.0](LICENSE), unless otherwise noted. See [NOTICE](NOTICE) for scope and attribution notes.
 
-The ViGOS paper, paper PDF, paper text, paper figures, and project-page research content are made available under the [arXiv.org non-exclusive license to distribute](LICENSE-PAPER.md), unless otherwise noted. This is not a Creative Commons reuse license.
+The ViGOS paper, paper PDF, paper text, paper figures, and project-page research content are released under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](LICENSE-PAPER.md) (CC BY-NC-ND 4.0), unless otherwise noted.
 
 Model weights, third-party datasets, benchmark assets, external dependencies, and the project-page template are subject to their own licenses. The project-page template license is documented in [docs/README.md](docs/README.md).
 

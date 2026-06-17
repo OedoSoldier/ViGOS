@@ -27,7 +27,7 @@ The project page uses the following ViGOS assets:
 
 ## ViGOS Paper License
 
-The ViGOS paper, paper PDF, paper text, paper figures, and project-page research content are made available under the [arXiv.org non-exclusive license to distribute](../LICENSE-PAPER.md), unless otherwise noted. This is not a Creative Commons reuse license.
+The ViGOS paper, paper PDF, paper text, paper figures, and project-page research content are released under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](../LICENSE-PAPER.md) (CC BY-NC-ND 4.0), unless otherwise noted.
 
 ## ViGOS Code License
 
