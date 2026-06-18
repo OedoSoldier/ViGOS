@@ -9,7 +9,7 @@ Sihan Wang<sup>1,2</sup>, Xiyao Liu<sup>1</sup>, Lianqing Liu<sup>1</sup>, Zhi H
 <sup>1</sup>State Key Laboratory of Robotics and Intelligent Systems, Shenyang Institute of Automation, Chinese Academy of Sciences  
 <sup>2</sup>University of Chinese Academy of Sciences
 
-[![Paper](https://img.shields.io/badge/Paper-PDF-b31b1b)](paper/ViGOS.pdf)
+[![Paper](https://img.shields.io/badge/Paper-PDF-b31b1b)](https://arxiv.org/pdf/2606.19120)
 [![Project Page](https://img.shields.io/badge/Project-Page-1764c2)](https://oedosoldier.github.io/ViGOS/)
 [![Code](https://img.shields.io/badge/Code-GitHub-24292f)](https://github.com/OedoSoldier/ViGOS)
 [![3B](https://img.shields.io/badge/HF-ViGOS--3B-ffcc4d)](https://huggingface.co/OedoSoldier/ViGOS-3B)
@@ -299,7 +299,6 @@ docs/
     +-- css/
     +-- images/
     +-- js/
-    +-- pdfs/
 ```
 
 ## Acknowledgements
@@ -323,9 +322,9 @@ Model weights, third-party datasets, benchmark assets, external dependencies, an
   title={Seeing Before Reasoning: Decoupling Perception and Reasoning for Shortcut-Resilient Multimodal On-Policy Self-Distillation},
   author={Wang, Sihan and Liu, Xiyao and Liu, Lianqing and Han, Zhi},
   year={2026},
-  eprint={TBD},
+  eprint={2606.19120},
   archivePrefix={arXiv},
-  primaryClass={cs.AI},
-  url={https://github.com/OedoSoldier/ViGOS}
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2606.19120}
 }
 ```

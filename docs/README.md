@@ -11,7 +11,7 @@ Open `index.html` directly in a browser, or serve this folder as a static site.
 - `index.html`: ViGOS project page filled with paper metadata, abstract, method, results, qualitative examples, and BibTeX.
 - `static/css/vigos.css`: ViGOS-specific styling layered on top of the Academic Project Page Template assets.
 - `static/images/`: images copied from the repository `misc/` folder for the project page.
-- `static/pdfs/ViGOS.pdf`: local paper PDF used by the page.
+- Paper PDF: linked directly from arXiv at `https://arxiv.org/pdf/2606.19120`; no local PDF copy is stored in this folder.
 
 ## Source Assets
 
